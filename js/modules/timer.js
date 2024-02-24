@@ -1,12 +1,12 @@
-function timer() {
+
+
+function timer(id, deadline) {
 
     //Timer
 
-    const deadline = '2024-09-20';
-
-    function getTimeRemaining(endtime) {
+    function getTimeRemaining(deadline) {
         let days, hours, minutes, seconds;
-        const t = Date.parse(endtime) - Date.parse(new Date());
+        const t = Date.parse(deadline) - Date.parse(new Date());
         if (t <= 0) {
             days = 0;
             hours = 0;
@@ -37,7 +37,7 @@ function timer() {
         }
     }
 
-    function setClock(selector, endtime) {
+    function setClock(selector, deadline) {
         const timer = document.querySelector(selector),
             days = timer.querySelector('#days'),
             hours = timer.querySelector('#hours'),
@@ -48,7 +48,7 @@ function timer() {
         updateClock();
 
         function updateClock() {
-            const t = getTimeRemaining(endtime);
+            const t = getTimeRemaining(deadline);
 
             days.innerHTML = getZero(t.days);
             hours.innerHTML = getZero(t.hours);
@@ -62,7 +62,7 @@ function timer() {
 
     }
 
-    setClock('.timer', deadline);
+    setClock(id, deadline);
 }
 
-module.exports = timer;
+export default timer;
